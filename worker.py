@@ -51,3 +51,4 @@ set_job_state(job['id'], 'pending', attempts=attempts, next_run_at=next_run)
 print(f'[worker {worker_id}] job {job["id"]} failed, retrying in {delay}s (attempt {attempts}/{max_retries})')
 _sleep_with_shutdown(min(delay, 2)) # backoff is handled by next_run_at, but pause a little to avoid busy loop
 else
+ 
