@@ -94,7 +94,7 @@ def enqueue_job(job_json):
     ))
     conn.commit()
     conn.close()
-    click.echo(f"✅ Job {job['id']} enqueued.")
+    click.echo(f" Job {job['id']} enqueued.")
 
 
 def get_next_job():
@@ -138,30 +138,30 @@ def process_job(job):
         result = subprocess.run(job["command"], shell=True)
         if result.returncode == 0:
             update_job_state(job["id"], "completed")
-            click.echo(f"✅ Job {job['id']} completed successfully.")
+            click.echo(f" Job {job['id']} completed successfully.")
         else:
             raise Exception("Command failed")
     except Exception as e:
         attempts = job["attempts"] + 1
         if attempts >= job["max_retries"]:
             move_to_dlq(job["id"])
-            click.echo(f"❌ Job {job['id']} failed permanently → moved to DLQ.")
+            click.echo(f" Job {job['id']} failed permanently → moved to DLQ.")
         else:
             delay = get_config("backoff_base") ** attempts
             update_job_attempt(job["id"], attempts, time.time() + delay)
             update_job_state(job["id"], "pending")
-            click.echo(f"🔁 Job {job['id']} failed. Retrying in {delay}s...")
+            click.echo(f"Job {job['id']} failed. Retrying in {delay}s...")
 
 
 def worker_loop(worker_id, stop_event):
-    click.echo(f"🧵 Worker-{worker_id} started.")
+    click.echo(f" Worker-{worker_id} started.")
     while not stop_event.is_set():
         job = get_next_job()
         if job:
             process_job(job)
         else:
             time.sleep(1)
-    click.echo(f"🛑 Worker-{worker_id} stopped.")
+    click.echo(f" Worker-{worker_id} stopped.")
 
 
 # ---------------- CLI ----------------
@@ -266,7 +266,7 @@ def dlq_retry(job_id):
     """, (time.time(), now(), job_id))
     conn.commit()
     conn.close()
-    click.echo(f"♻️  Job {job_id} moved from DLQ to pending.")
+    click.echo(f"  Job {job_id} moved from DLQ to pending.")
 
 
 @cli.group()
