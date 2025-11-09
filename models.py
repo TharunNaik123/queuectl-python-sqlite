@@ -1,6 +1,4 @@
 # models.py
-
-
 def create_job(jobdict):
 job = {
 'id': jobdict['id'],
