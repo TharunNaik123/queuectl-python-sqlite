@@ -28,7 +28,7 @@ worker start runs in the foreground. To stop, run queuectl worker stop which set
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 - **Language:** Python 3.8+
 - **Database:** SQLite (file-based)
@@ -39,7 +39,7 @@ worker start runs in the foreground. To stop, run queuectl worker stop which set
 
 ---
 
-## 🧩 Job Structure
+## Job Structure
 
 Each job in the system follows this structure:
 
@@ -60,6 +60,7 @@ Each job in the system follows this structure:
 | `completed`  | Finished successfully                |
 | `failed`     | Temporary failure, will retry        |
 | `dead`       | Moved to DLQ after retries exhausted |
+
 Setup Instructions
 1️. Clone the repository
 git clone https://github.com/<TharunNaik123>/queuectl-python-sqlite.git
@@ -67,7 +68,8 @@ cd queuectl-python-sqlite
 2.Install dependencies
 pip install click tabulate
 3.Run the CLI
-python queuectl.py --help
+python queuectl.py
+
 How to run (setup)
 1.Make sure you have Python 3.9+ installed.
 2.Install dependencies (only click is required):
