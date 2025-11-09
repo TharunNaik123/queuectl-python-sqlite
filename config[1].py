@@ -8,8 +8,6 @@ if existing:
 execute('UPDATE config SET value=? WHERE key=?', (str(value), key))
 else:
 execute('INSERT INTO config(key,value) VALUES (?,?)', (key, str(value)))
-
-
 def get_config(key, default=None):
 row = query_one('SELECT value FROM config WHERE key=?', (key,))
 return row[0] if row else default
