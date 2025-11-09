@@ -91,3 +91,10 @@ python queuectl.py dlq retry job1
 Set config (max retries default):
 python queuectl.py config set backoff_base 2
 python queuectl.py config set default_max_retries 3
+
+Testing Checklist
+ 1.Basic job executes successfully
+ 2.Failed jobs retry with exponential backoff
+ 3.Jobs persist in SQLite across restarts
+ 4.DLQ receives permanently failed jobs
+ 5.Multiple workers process jobs without overlap
