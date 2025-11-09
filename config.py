@@ -17,3 +17,4 @@ def all_config():
 rows = query_all('SELECT key,value FROM config')
 return dict(rows)
 
+
