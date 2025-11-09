@@ -70,3 +70,4 @@ return cur.fetchall()
 
 def now_iso():
 return datetime.utcnow().isoformat() + 'Z'
+
