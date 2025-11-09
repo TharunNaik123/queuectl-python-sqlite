@@ -1,4 +1,4 @@
-# QueueCTL  Python + SQLite CLI Background Job Queue
+QueueCTL - Backend Developer Internship Assignment
 
 QueueCTL is a simple command-line tool that I built as part of a backend internship assignment.  
 It’s written in Python, uses SQLite for persistent job storage, and supports basic background job execution with retry logic and a Dead Letter Queue.
